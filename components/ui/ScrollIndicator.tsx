@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 
 export default function ScrollIndicator() {
-  const [opacity, setOpacity] = useState(1);
+  const [opacity, setOpacity] = useState(() =>
+    typeof window !== "undefined"
+      ? Math.max(0, 1 - window.scrollY / 120)
+      : 1
+  );
 
   useEffect(() => {
     const handleScroll = () => {

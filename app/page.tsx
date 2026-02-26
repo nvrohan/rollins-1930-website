@@ -27,7 +27,11 @@ const SERIES = [
 ] as const;
 
 export default function Home() {
-  const featured = FEATURED_IDS.map((id) => products.find((p) => p.id === id)!);
+  const featured = FEATURED_IDS.map((id) => {
+    const product = products.find((p) => p.id === id);
+    if (!product) throw new Error(`Featured product not found: "${id}"`);
+    return product;
+  });
 
   return (
     <>
