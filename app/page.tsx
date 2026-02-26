@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { products } from "@/data/products";
 import FadeUp from "@/components/ui/FadeUp";
+import ScrollIndicator from "@/components/ui/ScrollIndicator";
 
 const FEATURED_IDS = ["imperial-a3", "heritage-t2", "legacy-s1"] as const;
 
@@ -70,15 +71,7 @@ export default function Home() {
         </div>
 
         {/* Scroll indicator */}
-        <div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-[fadeUpIn_0.7s_ease-out_both]"
-          style={{ animationDelay: "800ms" }}
-        >
-          <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-muted">
-            Scroll
-          </span>
-          <div className="w-px h-8 bg-gradient-to-b from-muted to-transparent animate-bounce" />
-        </div>
+        <ScrollIndicator />
       </section>
 
       {/* ── Featured Models ───────────────────────────────── */}
@@ -138,7 +131,7 @@ export default function Home() {
           </FadeUp>
 
           {/* Craft blocks */}
-          <FadeUp delay={0.2} className="flex flex-col divide-y divide-border">
+          <FadeUp delay={0.2} className="flex flex-col divide-y divide-gold/30">
             {[
               {
                 title: "Precision Engineering",
@@ -175,10 +168,10 @@ export default function Home() {
             {SERIES.map((s, i) => (
               <FadeUp key={s.tier} delay={i * 0.1}>
                 <div className="border-t-2 border-gold pt-8">
-                  <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-gold mb-3">
+                  <h3 className="font-serif text-2xl text-white mb-2">{s.name}</h3>
+                  <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-gold mb-4">
                     {s.label}
                   </p>
-                  <h3 className="font-serif text-2xl text-white mb-4">{s.name}</h3>
                   <p className="font-sans text-sm text-muted leading-relaxed mb-6">
                     {s.desc}
                   </p>
@@ -202,10 +195,9 @@ export default function Home() {
             <p className="font-sans text-xs tracking-[0.2em] uppercase text-gold mb-6">
               Our Partners
             </p>
-            <div className="w-16 h-px bg-gold/30 mx-auto mb-10" />
-            <p className="font-serif text-2xl text-white mb-2">Rohan Gore</p>
-            <p className="font-sans text-sm text-muted tracking-[0.1em] uppercase mb-10">
-              Partner — India
+            <div className="w-16 h-px bg-gold mx-auto mb-10" />
+            <p className="font-serif text-xl text-white mb-10">
+              Rohan Gore · Partner — India
             </p>
             <Link
               href="/partners"
