@@ -37,11 +37,11 @@ export default function Header() {
           href="/"
           className="font-serif text-xl tracking-[0.25em] text-gold uppercase hover:text-gold-light transition-colors duration-200"
         >
-          Rollins 1930
+          ROLLINS 1930
         </Link>
 
         {/* ── Desktop Nav ──────────────────────────────── */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav aria-label="Primary navigation" className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -63,6 +63,8 @@ export default function Header() {
         <button
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
           className="md:hidden flex flex-col gap-1.5 p-2"
         >
           <span
@@ -87,13 +89,13 @@ export default function Header() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: "-100%" }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            exit={{ opacity: 0, y: "-100%" }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="md:hidden absolute top-20 left-0 right-0 bg-black/95 backdrop-blur-md border-b border-border"
           >
-            <nav className="flex flex-col px-6 py-8 gap-6">
+            <nav id="mobile-nav" aria-label="Mobile navigation" className="flex flex-col px-6 py-8 gap-6">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
