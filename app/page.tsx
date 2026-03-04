@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Image from "next/image";
+import Link from "@/components/ui/Link";
 import { products } from "@/data/products";
 import FadeUp from "@/components/ui/FadeUp";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
@@ -91,9 +92,14 @@ export default function Home() {
             {featured.map((product, i) => (
               <FadeUp key={product.id} delay={i * 0.1}>
                 <Link href={`/saxophones/${product.id}`} className="group block">
-                  {/* Placeholder image — swap with next/image when photos available */}
                   <div className="w-full aspect-[4/5] bg-charcoal relative overflow-hidden mb-6">
-                    <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-charcoal-light to-charcoal group-hover:scale-105 transition-transform duration-700" />
+                    <Image
+                      src={product.images[0]}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
                   <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-gold mb-2">
                     {product.series}
